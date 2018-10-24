@@ -1,5 +1,5 @@
 <p align='center'>
-<br><img src='https://user-images.githubusercontent.com/74385/46930533-c84de080-d078-11e8-8b8a-24945201be94.png' width='160'><br>
+<br><img src='https://user-images.githubusercontent.com/74385/47445092-a0821980-d7ea-11e8-8771-6014894d4b49.png' width='160'><br>
 </p>
 
 <h1 align='center'>ink-align</h1>
@@ -16,8 +16,9 @@
 
 ## Thanks
 
-**ink-align** © 2018+, Rico Sta. Cruz. Released under the [MIT] License.<br>
-Authored and maintained by Rico Sta. Cruz with help from contributors ([list][contributors]).
+**ink-align** © 2018+, Rico Sta. Cruz. Released under the [MIT] License. <br>
+Authored and maintained by Rico Sta. Cruz with help from contributors ([list][contributors]). <br>
+_(Thanks Alina Oleynik for the [icon](https://thenounproject.com/term/alignment/880191)!)_
 
 > [ricostacruz.com](http://ricostacruz.com) &nbsp;&middot;&nbsp;
 > GitHub [@rstacruz](https://github.com/rstacruz) &nbsp;&middot;&nbsp;
