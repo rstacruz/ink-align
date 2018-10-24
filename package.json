@@ -1,0 +1,25 @@
+{
+  "name": "ink-align",
+  "version": "0.1.0",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "babel src -d lib",
+    "watch": "babel src -d lib --watch --verbose"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-transform-react-jsx": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
+    "jest": "^23.6.0",
+    "prettier": "^1.14.3"
+  },
+  "dependencies": {
+    "ansi-escapes": "^3.1.0",
+    "ink": "^0.5.1",
+    "strip-ansi": "^5.0.0"
+  }
+}
