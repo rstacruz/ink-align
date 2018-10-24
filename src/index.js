@@ -16,9 +16,14 @@ export const Side = ({ width, right, left }) => {
 
   const leftStr = renderToString(left || '')
   const rightStr = renderToString(right || '')
+
+  // Force an extra space in between if both left and right are given
+  const minSpaces = leftStr.length && rightStr.length ? 1 : 0
+
+  // Cap the minimum to 1 or 0 (depending on the above)
   const spaces = Math.max(
     width - strip(leftStr).length - strip(rightStr).length,
-    1
+    minSpaces
   )
 
   return (

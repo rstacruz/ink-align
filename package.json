@@ -4,6 +4,7 @@
   "main": "lib/index.js",
   "license": "MIT",
   "scripts": {
+    "test": "jest",
     "build": "babel src -d lib",
     "watch": "babel src -d lib --watch --verbose"
   },

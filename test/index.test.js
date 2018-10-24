@@ -1,8 +1,54 @@
-const Align = require('../lib')
-const { h, renderToString } = require('ink')
+import { Left, Right } from '../src'
+import { Color, h, renderToString } from 'ink'
 
-test('works', () => {
-  const el = h(Align.Left, { width: 10 }, 'hello')
-  const output = renderToString(el)
-  expect(output).toEqual('hello     ')
+describe('Left', () => {
+  test('works', () => {
+    const el = <Left width={10}>hello</Left>
+    const output = renderToString(el)
+    expect(output).toEqual('hello     ')
+  })
+
+  test('supports color', () => {
+    const inside = (
+      <>
+        <Color bold>he</Color>
+        llo
+      </>
+    )
+    const el = <Left width={10}>{inside}</Left>
+    const output = renderToString(el)
+    expect(output).toEqual(renderToString(inside) + '     ')
+  })
+
+  test('auto-infers width', () => {
+    const el = <Left>hello</Left>
+    const output = renderToString(el)
+    expect(output).toMatch(/^hello *$/)
+  })
+
+  test('can exceed width', () => {
+    const el = <Left width={2}>hello</Left>
+    const output = renderToString(el)
+    expect(output).toEqual('hello')
+  })
+})
+
+describe('Right', () => {
+  test('works', () => {
+    const el = <Right width={10}>hello</Right>
+    const output = renderToString(el)
+    expect(output).toEqual('     hello')
+  })
+
+  test('auto-infers width', () => {
+    const el = <Right>hello</Right>
+    const output = renderToString(el)
+    expect(output).toMatch(/^ *hello$/)
+  })
+
+  test('can exceed width', () => {
+    const el = <Right width={2}>hello</Right>
+    const output = renderToString(el)
+    expect(output).toEqual('hello')
+  })
 })
