@@ -27,12 +27,53 @@ export const Side = ({ width, right, left }) => {
   )
 
   return (
-    <span>
-      {leftStr}
-      {Array(spaces + 1).join(' ')}
-      {rightStr}
-    </span>
+    <>
+      {left}
+      <Spaces count={spaces} />
+      {right}
+    </>
   )
+}
+
+/**
+ * Render multiline strings. This is computationally more expensive than the
+ * single line version.
+ */
+
+export const Multiline = ({ width, children, isLeft, isRight, isCenter }) => {
+  if (!width) width = process.stdout.columns
+  const str = renderToString(<span>{children}</span>)
+  const lines = str.split('\n')
+
+  return lines.map((line, idx) => {
+    const spaces = Math.max(0, width - strip(line).length)
+    if (isRight) {
+      return (
+        <>
+          {idx !== 0 ? <br /> : ''}
+          <Spaces count={spaces} />
+          {line}
+        </>
+      )
+    } else if (isCenter) {
+      return (
+        <>
+          {idx !== 0 ? <br /> : ''}
+          <Spaces count={Math.floor(spaces / 2)} />
+          {line}
+          <Spaces count={Math.ceil(spaces / 2)} />
+        </>
+      )
+    } else {
+      return (
+        <>
+          {idx !== 0 ? <br /> : ''}
+          {line}
+          <Spaces count={spaces} />
+        </>
+      )
+    }
+  })
 }
 
 /**
@@ -44,8 +85,16 @@ export const Side = ({ width, right, left }) => {
  *     </Left>
  */
 
-export const Left = ({ width, children }) => {
-  return <Side width={width} left={<span>{children}</span>} />
+export const Left = ({ width, children, multiline }) => {
+  if (multiline) {
+    return (
+      <Multiline width={width} isLeft>
+        {children}
+      </Multiline>
+    )
+  } else {
+    return <Side width={width} left={<span>{children}</span>} />
+  }
 }
 
 /**
@@ -57,8 +106,16 @@ export const Left = ({ width, children }) => {
  *     </Right>
  */
 
-export const Right = ({ width, children }) => {
-  return <Side width={width} right={<span>{children}</span>} />
+export const Right = ({ width, children, multiline }) => {
+  if (multiline) {
+    return (
+      <Multiline width={width} isRight>
+        {children}
+      </Multiline>
+    )
+  } else {
+    return <Side width={width} right={<span>{children}</span>} />
+  }
 }
 
 /**
@@ -83,7 +140,7 @@ export class Middle extends Component {
     const padding = Math.floor(((height || process.stdout.rows) - lines) / 2)
     return (
       <span>
-        {Array(padding + 1).join('\n')}
+        <Spaces count={padding} />
         {str}
       </span>
     )
@@ -107,9 +164,17 @@ export const Center = ({ width, children }) => {
 
   return (
     <span>
-      {Array(Math.floor(spaces / 2) + 1).join(' ')}
+      <Spaces count={Math.floor(spaces / 2)} />
       {str}
-      {Array(Math.ceil(spaces / 2) + 1).join(' ')}
+      <Spaces count={Math.ceil(spaces / 2)} />
     </span>
   )
+}
+
+/**
+ * Renders spaces
+ */
+
+export const Spaces = ({ count }) => {
+  return Array(count + 1).join(' ')
 }
