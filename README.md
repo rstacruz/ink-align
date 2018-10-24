@@ -10,7 +10,37 @@
 
 <br>
 
-:warning: Work in progress! This allows you to align text in [Ink][ink] (React for command-line apps).
+:warning: Work in progress! This allows you to align text in [Ink][ink] (React for command-line apps). Supports colors and everything.
+
+## Basic examples
+
+You can align horizontally using the `Left`, `Center` and `Right` components.
+
+```js
+import { render, h } from 'ink'
+import { Left, Center, Right } from 'ink-align'
+
+render(
+  <div>
+    <Left>I am left aligned</Left>
+    <Right>I am right aligned</Right>
+    <Center>I am center aligned</Center>
+  </div>
+)
+```
+
+You can align vertically using the `Middle` component. (Tip: you can combine this with _Center_!)
+
+```js
+import { render, h } from 'ink'
+import { Center, Middle } from 'ink-align'
+
+render(
+  <Middle>
+    <Center>Hello there.</Center>
+  </Middle>
+)
+```
 
 [ink]: https://yarnpkg.com/en/package/ink
 
@@ -27,5 +57,5 @@ _(Thanks Alina Oleynik for the [icon](https://thenounproject.com/term/alignment/
 [![](https://img.shields.io/github/followers/rstacruz.svg?style=social&label=@rstacruz)](https://github.com/rstacruz) &nbsp;
 [![](https://img.shields.io/twitter/follow/rstacruz.svg?style=social&label=@rstacruz)](https://twitter.com/rstacruz)
 
-[MIT]: http://mit-license.org/
+[mit]: http://mit-license.org/
 [contributors]: http://github.com/rstacruz/ink-align/contributors
